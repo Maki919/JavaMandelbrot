@@ -1,0 +1,20 @@
+import javax.swing.*;
+
+public class Main extends JFrame {
+    public static int WIDTH = 1000;
+    public static int HEIGHT = 1000;
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Swing Mandelbrot");
+            frame.setSize(WIDTH, HEIGHT);
+            frame.setLocationRelativeTo(null);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            Mandelbrot mandelbrot = new Mandelbrot();
+            frame.add(mandelbrot);
+
+            frame.setVisible(true);
+        });
+    }
+}
