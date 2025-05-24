@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 
 import static util.FractalColors.getColor;
-import static mandelbrot.MandelbrotWorker.*;
 
 public class Mandelbrot extends JPanel {
     private double minRE = -2.0;
@@ -36,7 +35,8 @@ public class Mandelbrot extends JPanel {
             for (int x = 0; x < Main.WIDTH; x++) {
                 for (int y = 0; y < Main.HEIGHT; y++) {
                     g.setColor(getColor(pixels[x][y].getIterations(), FractalColors.selectedPalette));
-                    g.fillRect(x, y, 2, 2);
+                    g.fillRect(x, y, 1, 1);
+                    //g.drawLine(x, y, x, y);
                 }
             }
 
@@ -54,8 +54,8 @@ public class Mandelbrot extends JPanel {
         reRange = reRange * zoom;
         imRange = imRange * zoom;
 
-        minRE = reCenter - (reRange / 3 * 2);
-        maxRE = reCenter + (reRange / 3);
+        minRE = reCenter - (reRange / 2);
+        maxRE = reCenter + (reRange / 2);
         minIM = imCenter - (imRange / 2);
         maxIM = imCenter + (imRange / 2);
 
@@ -63,12 +63,4 @@ public class Mandelbrot extends JPanel {
         MandelbrotWorker mandelbrotWorker = new MandelbrotWorker(this, minRE, maxRE, minIM, maxIM);
         mandelbrotWorker.execute();
     }
-//    private Color getColor(int iterations){
-//        if (iterations == mandelbrot.MandelbrotWorker.maxIterations)
-//            return Color.BLACK;
-//
-//        float hue = (float) iterations / mandelbrot.MandelbrotWorker.maxIterations;
-//        return Color.getHSBColor(hue, 1.0f, 1.0f);
-//    }
-
 }

@@ -1,7 +1,10 @@
 package mandelbrot;
 
+import util.FractalColors;
+
 import javax.swing.*;
-import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -24,6 +27,18 @@ public class Main extends JFrame {
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
                     mandelbrot.zoom(e.getX(), e.getY());
+                }
+            });
+            frame.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    super.keyPressed(e);
+                    int keyNumber = Character.getNumericValue(e.getKeyChar());
+
+                    if (keyNumber < FractalColors.allPalettes.length) {
+                        FractalColors.selectedPalette = FractalColors.allPalettes[keyNumber];
+                        mandelbrot.repaint();
+                    }
                 }
             });
             frame.add(mandelbrot);

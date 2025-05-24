@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class MandelbrotWorker extends SwingWorker<Complex[][], Void> {
     public static final int maxIterations = 1000;
-    private double minRE, maxRE, minIM, maxIM;
+    private final double minRE, maxRE, minIM, maxIM;
 
     private final Mandelbrot panel;
 
