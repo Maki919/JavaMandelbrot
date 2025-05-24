@@ -1,12 +1,8 @@
 package mandelbrot;
 
-import util.Complex;
-import util.FractalColors;
-
 import javax.swing.*;
 import java.awt.*;
-
-import static util.FractalColors.getColor;
+import java.awt.image.BufferedImage;
 
 public class Mandelbrot extends JPanel {
     private double minRE = -2.0;
@@ -14,32 +10,24 @@ public class Mandelbrot extends JPanel {
     private double minIM = -1.5;
     private double maxIM = 1.5;
 
-    private Complex[][] pixels;
+    private BufferedImage image;
 
     public Mandelbrot() {
+        setSize(1000,1000);
         new MandelbrotWorker(this, minRE, maxRE, minIM, maxIM).execute();
     }
 
-    public void setPixels(Complex[][] pixels){
-        this.pixels = pixels;
+    public void setImage(BufferedImage image) {
+        this.image = image;
         repaint();
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            if (pixels == null) return;
-
-            for (int x = 0; x < Main.WIDTH; x++) {
-                for (int y = 0; y < Main.HEIGHT; y++) {
-                    g.setColor(getColor(pixels[x][y].getIterations(), FractalColors.selectedPalette));
-                    g.fillRect(x, y, 1, 1);
-                    //g.drawLine(x, y, x, y);
-                }
-            }
-
+        if (image != null) {
+            g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+        }
     }
 
 
@@ -60,6 +48,9 @@ public class Mandelbrot extends JPanel {
         maxIM = imCenter + (imRange / 2);
 
 
+        executeMandelbrotWorker();
+    }
+    public void executeMandelbrotWorker(){
         MandelbrotWorker mandelbrotWorker = new MandelbrotWorker(this, minRE, maxRE, minIM, maxIM);
         mandelbrotWorker.execute();
     }

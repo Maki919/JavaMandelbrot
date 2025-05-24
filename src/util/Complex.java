@@ -3,7 +3,6 @@ package util;
 public class Complex {
     private double real;
     private double imaginary;
-    private int iterations;
 
     public Complex(double real, double imaginary) {
         this.real = real;
@@ -27,7 +26,5 @@ public class Complex {
     public double getImaginary(){ return imaginary; }
     public void setReal(double real){ this.real = real; }
     public void setImaginary(double imaginary){ this.imaginary = imaginary; }
-    public int getIterations(){ return iterations; }
-    public void setIterations(int iterations){ this.iterations = iterations; }
 
 }

@@ -53,7 +53,7 @@ public class FractalColors {
     };
 
     public static final Color[] palette3 = colorPaletteGenerator(200, Color.ORANGE, Color.GREEN);
-    public static final Color[] palette4 = colorPaletteGenerator(150, new Color(40, 0, 73), new Color(42, 70, 40));
+    public static final Color[] palette4 = colorPaletteGenerator(150, new Color(40, 0, 73), new Color(11, 190, 0));
     public static final Color[] palette5 = colorPaletteGenerator(200, new Color(0, 7, 100), new Color(0, 255, 255));
     public static final Color[] palette6 = colorPaletteGenerator(200, new Color(30, 0, 60), new Color(255, 0, 255));
 
