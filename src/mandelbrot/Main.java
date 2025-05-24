@@ -37,7 +37,7 @@ public class Main extends JFrame {
 
                     if (keyNumber < FractalColors.allPalettes.length) {
                         FractalColors.selectedPalette = FractalColors.allPalettes[keyNumber];
-                        mandelbrot.repaint();
+                        mandelbrot.executeMandelbrotWorker();
                     }
                 }
             });
