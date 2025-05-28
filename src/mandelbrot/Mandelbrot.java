@@ -1,8 +1,15 @@
 package mandelbrot;
 
+import util.FractalColors;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Mandelbrot extends JPanel {
     private double minRE = -2.0;
@@ -53,5 +60,17 @@ public class Mandelbrot extends JPanel {
     public void executeMandelbrotWorker(){
         MandelbrotWorker mandelbrotWorker = new MandelbrotWorker(this, minRE, maxRE, minIM, maxIM);
         mandelbrotWorker.execute();
+    }
+    public void saveImage(){
+        //Name consists of chosen color, time/cords
+        LocalDateTime time = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
+        String timestamp = time.format(formatter);
+        File ausgabeBild = new File("pictures/"+ timestamp + "_mandelbrot.png");
+        try {
+            ImageIO.write(image, "png", ausgabeBild);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
